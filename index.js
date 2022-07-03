@@ -9,6 +9,7 @@ const typeDefs = gql`
 
   # This "Book" type defines the queryable fields for every book in our data source.
   type Post {
+    id: ID!
     title: String
     author: String
     body: String
@@ -19,6 +20,10 @@ const typeDefs = gql`
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
     posts: [Post]
+  }
+
+  type Mutation {
+    createPost(id: Int, title: String, author: String, body: String): Post
   }
 `;
 
