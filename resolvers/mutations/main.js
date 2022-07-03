@@ -1,5 +1,5 @@
 const { createPost, deletePost, updatePost } = require('./posts');
-const { addCommentToPost, deleteCommentByAuthor, updateCommentByAuthor } = require('./comments');
+const { addCommentToPost, deleteComment, updateComment } = require('./comments');
 
 module.exports = {
   Mutation: {
@@ -7,7 +7,7 @@ module.exports = {
     deletePost,
     updatePost,
     addCommentToPost,
-    deleteCommentByAuthor,
-    updateCommentByAuthor
+    deleteComment,
+    updateComment
   }
 }
