@@ -1,9 +1,10 @@
 const {Query} = require('./queries');
 const {Mutation} = require('./mutations/main');
-const {Post} = require('./customTypes');
+const {Post, Comment} = require('./customTypes');
 
 const resolvers = {
   Post,
+  Comment,
   Query,
   Mutation
 };
