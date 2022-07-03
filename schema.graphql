@@ -1,4 +1,5 @@
 type Comment {
+  id: String
   author: String
   body: String
 }
@@ -12,7 +13,7 @@ type Post {
 }
 
 type Query {
-  post(id: Int!): Post
+  post(id: String!): Post
   posts: [Post]
 }
 
@@ -21,6 +22,6 @@ type Mutation {
   updatePost(id: String!, title: String, author: String, body: String): Post
   deletePost(id: String!): [Post]
   addCommentToPost(id: String!, author: String!, body: String!): Post
-  updateCommentByAuthor(id: String!, author: String!, body: String!): Post
-  deleteCommentByAuthor(id: String!, author: String!): Post
+  updateComment(id: String!, body: String!): Post
+  deleteComment(id: String!): Post
 }
