@@ -35,12 +35,16 @@ class BlogDB extends DataSource {
   }
 
   /* ---------- Comment-specific database logic ---------- */
-  addNewComment(author, body) {
-    return Comment.create({author, body});
+  addNewComment(postId, author, body) {
+    return Comment.create({postId, author, body});
   }
 
   getCommentById(id) {
     return Comment.findById(id);
+  }
+
+  deleteCommentById(_id) {
+    return Comment.deleteOne({_id});
   }
 
   connectToDb(db_url) {
