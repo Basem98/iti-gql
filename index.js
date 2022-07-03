@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const resolvers = require('./resolver');
+const PostsDatabase = require('./datasource');
 
 /* -------------- Define the data types used throughout the server -------------- */
 const typeDefs = gql`
@@ -36,6 +37,7 @@ const typeDefs = gql`
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  dataSources: () => ({postsDb: new PostsDatabase()}),
   csrfPrevention: true,
   cache: 'bounded',
 });
