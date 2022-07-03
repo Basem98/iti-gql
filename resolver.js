@@ -12,7 +12,13 @@ const resolvers = {
       posts.push(newPost)
       return newPost;
     },
-    updatePost: () => { },
+    updatePost: (_, {id, title, author, body}) => {
+      const postToUpdate = posts.find(post => post.id = id);
+      if (title) postToUpdate.title = title;
+      if (author) postToUpdate.author = author;
+      if (body) postToUpdate.body = body;
+      return postToUpdate;
+    },
     deletePost: () => { }
   }
 };
