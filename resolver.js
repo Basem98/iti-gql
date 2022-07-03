@@ -1,4 +1,4 @@
-const { posts } = require('./dataset');
+let { posts } = require('./dataset');
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -19,7 +19,10 @@ const resolvers = {
       if (body) postToUpdate.body = body;
       return postToUpdate;
     },
-    deletePost: () => { }
+    deletePost: (_, {id}) => {
+      posts = posts.filter(post => post.id != id);
+      return posts;
+    }
   }
 };
 
