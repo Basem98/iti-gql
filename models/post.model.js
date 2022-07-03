@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
+
 const postSchema = new mongoose.Schema({
-  _id: {type: Number, required: true},
+  _id: mongoose.Schema.Types.ObjectId,
   title: String,
   author: String,
   body: String,
-  comments: [{
-    author: String,
-    body: String
-  }]
-}, {_id: false});
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ]
+});
 
 
 
