@@ -20,7 +20,7 @@ type Mutation {
   createPost(title: String!, author: String!, body: String): Post
   updatePost(id: String!, title: String, author: String, body: String): Post
   deletePost(id: String!): [Post]
-  addCommentToPost(id: Int!, author: String!, body: String!): Post
+  addCommentToPost(id: String!, author: String!, body: String!): Post
   updateCommentByAuthor(id: String!, author: String!, body: String!): Post
   deleteCommentByAuthor(id: String!, author: String!): Post
 }

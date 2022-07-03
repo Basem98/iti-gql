@@ -1,8 +1,8 @@
 module.exports = {
   Query: {
-    post: async (_, { id }, context) => await context.dataSources.postsDb.findPostById(id),
+    post: async (_, { id }, context) => await context.dataSources.blogDb.findPostById(id),
     posts: async (_, args, context) => {
-      return await context.dataSources.postsDb.getPosts();
+      return await context.dataSources.blogDb.getPosts();
     },
   }
 }
