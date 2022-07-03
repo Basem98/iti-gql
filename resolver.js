@@ -31,12 +31,18 @@ const resolvers = {
       postToCommentAt.comments.push({ author, body });
       return postToCommentAt;
     },
-    /* -------------- Update a comment's body by using the passed ID argument -------------- */
+    /* -------------- Update a comment's body by using the passed ID and author argument -------------- */
     updateCommentByAuthor: (_, { id, author, body }) => {
       const postToCommentAt = posts.find(post => post.id = id);
       const commentToUpdate = postToCommentAt.comments.find(comment => comment.author.includes(author));
       commentToUpdate.body = body;
       return postToCommentAt;
+    },
+    /* -------------- Delete a comment by using the passed ID and author argument -------------- */
+    deleteCommentByAuthor: (_, {id, author}) => {
+      const postToDeleteCommentFrom = posts.find(post => post.id = id);
+      postToDeleteCommentFrom.comments = postToDeleteCommentFrom.comments.filter(comment => !comment.author.includes(author));
+      return postToDeleteCommentFrom;
     }
   }
 };
