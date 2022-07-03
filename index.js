@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
-
+const resolvers = require('./resolver');
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
@@ -33,3 +33,17 @@ const posts = [
     body: 'Fusce semper, dui et efficitur interdum, neque felis vulputate eros, ut venenatis erat ligula sit amet elit. Nunc auctor rhoncus lacus, vitae ullamcorper libero mattis sit amet. Ut tristique et ligula vel fermentum. Nulla lacinia leo et condimentum viverra. Curabitur blandit euismod vehicula. Nulla sed pharetra nisi.'
   },
 ];
+
+// The ApolloServer constructor requires two parameters: your schema
+// definition and your set of resolvers.
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  csrfPrevention: true,
+  cache: 'bounded',
+});
+
+// The `listen` method launches a web server.
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});
