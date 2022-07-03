@@ -22,10 +22,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createPost(id: Int, title: String, author: String, body: String): Post
-    updatePost(id: Int, title: String, author: String, body: String): Post
-    deletePost(id: Int): [Post]
+    createPost(id: Int!, title: String!, author: String!, body: String): Post
+    updatePost(id: Int!, title: String, author: String, body: String): Post
+    deletePost(id: Int!): [Post]
     addCommentToPost(id: Int!, author: String!, body: String!): Post
+    updateCommentByAuthor(id: Int!, author: String!, body: String!): Post
   }
 `;
 

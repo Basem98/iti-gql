@@ -2,7 +2,7 @@ let { posts } = require('./dataset');
 
 const resolvers = {
   Query: {
-    post: (_, {id}) => posts.find(post => post.id == id),  
+    post: (_, { id }) => posts.find(post => post.id == id),
     posts: () => posts,
   },
   Mutation: {
@@ -25,10 +25,17 @@ const resolvers = {
       posts = posts.filter(post => post.id != id);
       return posts;
     },
-    /* -------------- Delete a post based on the passed ID argument -------------- */
-    addCommentToPost: (_, {id, author, body}) => {
+    /* -------------- Create a comment to a post based on the passed ID argument -------------- */
+    addCommentToPost: (_, { id, author, body }) => {
       const postToCommentAt = posts.find(post => post.id = id);
-      postToCommentAt.comments.push({author, body});
+      postToCommentAt.comments.push({ author, body });
+      return postToCommentAt;
+    },
+    /* -------------- Update a comment's body by using the passed ID argument -------------- */
+    updateCommentByAuthor: (_, { id, author, body }) => {
+      const postToCommentAt = posts.find(post => post.id = id);
+      const commentToUpdate = postToCommentAt.comments.find(comment => comment.author.includes(author));
+      commentToUpdate.body = body;
       return postToCommentAt;
     }
   }
