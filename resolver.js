@@ -24,6 +24,12 @@ const resolvers = {
     deletePost: (_, { id }) => {
       posts = posts.filter(post => post.id != id);
       return posts;
+    },
+    /* -------------- Delete a post based on the passed ID argument -------------- */
+    addCommentToPost: (_, {id, author, body}) => {
+      const postToCommentAt = posts.find(post => post.id = id);
+      postToCommentAt.comments.push({author, body});
+      return postToCommentAt;
     }
   }
 };

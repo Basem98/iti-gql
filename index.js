@@ -25,7 +25,7 @@ const typeDefs = gql`
     createPost(id: Int, title: String, author: String, body: String): Post
     updatePost(id: Int, title: String, author: String, body: String): Post
     deletePost(id: Int): [Post]
-    addCommentToPost(id: Int, author: String, body: String): Post
+    addCommentToPost(id: Int!, author: String!, body: String!): Post
   }
 `;
 
