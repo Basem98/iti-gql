@@ -11,6 +11,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    post(id: Int!): Post
     posts: [Post]
   }
 

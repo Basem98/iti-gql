@@ -2,6 +2,7 @@ let { posts } = require('./dataset');
 
 const resolvers = {
   Query: {
+    post: (_, {id}) => posts.find(post => post.id == id),  
     posts: () => posts,
   },
   Mutation: {
