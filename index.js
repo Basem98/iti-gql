@@ -1,13 +1,8 @@
 const { ApolloServer, gql } = require('apollo-server');
 const resolvers = require('./resolver');
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
+/* -------------- Define the data types used throughout the server -------------- */
 const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-  # This "Book" type defines the queryable fields for every book in our data source.
   type Post {
     id: ID!
     title: String
@@ -15,9 +10,6 @@ const typeDefs = gql`
     body: String
   }
 
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
     posts: [Post]
   }
@@ -30,8 +22,7 @@ const typeDefs = gql`
 `;
 
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
+/* -------------- Configure the Apollo server -------------- */
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -39,7 +30,6 @@ const server = new ApolloServer({
   cache: 'bounded',
 });
 
-// The `listen` method launches a web server.
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
