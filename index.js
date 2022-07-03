@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const resolvers = require('./resolvers/index.js');
-const PostsDatabase = require('./datasources/blog');
+const BlogDB = require('./datasources/blog');
 const config = require('./config/envConfig');
 const fs = require('fs');
 const path = require('path');
@@ -11,7 +11,7 @@ const typeDefs = gql(fs.readFileSync(path.resolve(__dirname, 'schema.graphql'), 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources: () => ({postsDb: new PostsDatabase(config.DB.URL)}),
+  dataSources: () => ({blogDb: new BlogDB(config.DB.URL)}),
   csrfPrevention: true,
   cache: 'bounded',
 });

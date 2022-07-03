@@ -1,9 +1,10 @@
 const {DataSource} = require('apollo-datasource');
 const mongoose = require('mongoose');
 const Post = require('../models/post.model');
+const Comment = require('../models/comment.model');
 
 
-class PostsDatabase extends DataSource {
+class BlogDB extends DataSource {
   constructor(db_url) {
     super();
     /* ---------- Establish database connection when this datasource is instantiated ---------- */
@@ -21,8 +22,8 @@ class PostsDatabase extends DataSource {
     return Post.find();
   }
 
-  createPost(_id, title, author, body) {
-    return Post.create({_id, title, author, body});
+  createPost(title, author, body) {
+    return Post.create({title, author, body});
   }
 
   findPostById(_id) {
@@ -34,10 +35,17 @@ class PostsDatabase extends DataSource {
   }
 
   /* ---------- Comment-specific database logic ---------- */
+  addNewComment(author, body) {
+    return Comment.create({author, body});
+  }
+
+  getCommentById(id) {
+    return Comment.findById(id);
+  }
 
   connectToDb(db_url) {
     return mongoose.connect(db_url);
   }
 }
 
-module.exports = PostsDatabase;
+module.exports = BlogDB;
