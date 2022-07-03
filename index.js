@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const resolvers = require('./resolvers/index.js');
-const PostsDatabase = require('./datasource');
+const PostsDatabase = require('./datasources/blog');
 const config = require('./config/envConfig');
 const fs = require('fs');
 const path = require('path');

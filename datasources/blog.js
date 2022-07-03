@@ -1,19 +1,22 @@
 const {DataSource} = require('apollo-datasource');
 const mongoose = require('mongoose');
-const Post = require('./models');
+const Post = require('../models/post.model');
 
 
 class PostsDatabase extends DataSource {
-  constructor() {
+  constructor(db_url) {
     super();
-    this.connectToDb('mongodb://localhost:27017/posts');
+    /* ---------- Establish database connection when this datasource is instantiated ---------- */
+    this.connectToDb(db_url)
+    .then(() => console.log('The server has connected to the database successfully...'))
+    .catch((err) => console.log(err));
   }
 
   initialize(config) {
     this.config = config.context;
   }
 
-
+  /* ---------- Post-specific database logic ---------- */
   getPosts() {
     return Post.find();
   }
@@ -30,6 +33,7 @@ class PostsDatabase extends DataSource {
     return Post.deleteOne({_id});
   }
 
+  /* ---------- Comment-specific database logic ---------- */
 
   connectToDb(db_url) {
     return mongoose.connect(db_url);
